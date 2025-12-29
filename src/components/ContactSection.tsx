@@ -9,40 +9,31 @@ import emailjs from "@emailjs/browser";
 const contactInfo = [
   {
     icon: Mail,
-    label: "Email",
+    label: "EMAIL",
     value: "samyaraj26@gmail.com",
     href: "mailto:samyaraj26@gmail.com",
+    color: "bg-primary",
   },
   {
     icon: Phone,
-    label: "Phone",
+    label: "PHONE",
     value: "+91 9864923022",
     href: "tel:+919864923022",
+    color: "bg-accent",
   },
   {
     icon: MapPin,
-    label: "Location",
+    label: "LOCATION",
     value: "Assam, India",
     href: null,
+    color: "bg-secondary text-secondary-foreground",
   },
 ];
 
 const socialLinks = [
-  {
-    icon: Linkedin,
-    href: "https://www.linkedin.com/in/samyaraj-sarkar/",
-    label: "LinkedIn",
-  },
-  {
-    icon: Github,
-    href: "https://github.com/samyaraj26/",
-    label: "GitHub",
-  },
-  {
-    icon: Instagram,
-    href: "https://www.instagram.com/_.sam.exe._/",
-    label: "Instagram",
-  },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/samyaraj-sarkar/", label: "LinkedIn", color: "bg-accent" },
+  { icon: Github, href: "https://github.com/samyaraj26/", label: "GitHub", color: "bg-graffiti-purple" },
+  { icon: Instagram, href: "https://www.instagram.com/_.sam.exe._/", label: "Instagram", color: "bg-primary" },
 ];
 
 // EmailJS credentials - Replace these with your actual credentials
@@ -71,7 +62,6 @@ const ContactSection = () => {
       return;
     }
 
-    // Check if EmailJS credentials are configured
     if (EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID") {
       toast({
         title: "EmailJS Not Configured",
@@ -114,55 +104,56 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-20 left-0 w-72 h-72 bg-graffiti-green opacity-10 rotate-12" />
+      <div className="absolute bottom-20 right-0 w-64 h-64 bg-primary opacity-10 -rotate-12" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Get In <span className="text-primary neon-text">Touch</span>
+        <div className="mb-16 text-center">
+          <div className="inline-block bg-graffiti-orange text-foreground px-6 py-2 border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] -rotate-1 mb-4">
+            <span className="font-display text-sm tracking-widest">LET'S CONNECT</span>
+          </div>
+          <h2 className="font-display text-5xl md:text-7xl text-foreground">
+            GET IN <span className="text-primary">TOUCH</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full neon-border" />
-          <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Form */}
-          <div className="glass-card rounded-xl p-6 md:p-8 neon-border">
-            <h3 className="font-display text-xl font-semibold text-foreground mb-6">
-              Send a Message
+          <div className="graffiti-card p-6 md:p-8">
+            <h3 className="font-display text-2xl text-foreground mb-6 tracking-wide">
+              SEND A MESSAGE
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <Input
                   type="text"
-                  placeholder="Your Name"
+                  placeholder="YOUR NAME"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="bg-secondary border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground"
+                  className="font-display tracking-wide bg-muted border-2 border-foreground text-foreground placeholder:text-muted-foreground h-12"
                   maxLength={100}
                 />
               </div>
               <div>
                 <Input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder="YOUR EMAIL"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-secondary border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground"
+                  className="font-display tracking-wide bg-muted border-2 border-foreground text-foreground placeholder:text-muted-foreground h-12"
                   maxLength={255}
                 />
               </div>
               <div>
                 <Textarea
-                  placeholder="Your Message"
+                  placeholder="YOUR MESSAGE"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-secondary border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground min-h-[150px]"
+                  className="font-display tracking-wide bg-muted border-2 border-foreground text-foreground placeholder:text-muted-foreground min-h-[150px]"
                   maxLength={1000}
                 />
               </div>
@@ -170,14 +161,14 @@ const ContactSection = () => {
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/80 neon-border"
+                className="w-full font-display text-xl tracking-wide bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] hover:shadow-[8px_8px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all"
               >
                 {isSubmitting ? (
-                  "Sending..."
+                  "SENDING..."
                 ) : (
                   <>
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                    <Send className="w-5 h-5 mr-2" />
+                    SEND MESSAGE
                   </>
                 )}
               </Button>
@@ -186,44 +177,39 @@ const ContactSection = () => {
 
           {/* Contact Info */}
           <div className="space-y-8">
-            <div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-6">
-                Contact Information
-              </h3>
-              
-              <div className="space-y-4">
-                {contactInfo.map((info) => (
-                  <div
-                    key={info.label}
-                    className="glass-card rounded-xl p-4 neon-border hover:neon-border-strong transition-all duration-300 group"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <info.icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground text-sm">{info.label}</p>
-                        {info.href ? (
-                          <a
-                            href={info.href}
-                            className="text-foreground hover:text-primary transition-colors font-medium"
-                          >
-                            {info.value}
-                          </a>
-                        ) : (
-                          <p className="text-foreground font-medium">{info.value}</p>
-                        )}
-                      </div>
+            <div className="space-y-4">
+              {contactInfo.map((info, index) => (
+                <div
+                  key={info.label}
+                  className={`${info.color} p-5 border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] hover-lift`}
+                  style={{ transform: `rotate(${index % 2 === 0 ? -1 : 1}deg)` }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-foreground/10">
+                      <info.icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="font-display text-sm tracking-widest opacity-80">{info.label}</p>
+                      {info.href ? (
+                        <a
+                          href={info.href}
+                          className="font-bold text-lg hover:underline"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <p className="font-bold text-lg">{info.value}</p>
+                      )}
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
             {/* Social Links */}
             <div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-6">
-                Connect With Me
+              <h3 className="font-display text-2xl text-foreground mb-6 tracking-wide inline-block bg-graffiti-green text-foreground px-4 py-1 border-2 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))]">
+                FOLLOW ME
               </h3>
               
               <div className="flex gap-4">
@@ -234,9 +220,9 @@ const ContactSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-12 h-12 rounded-xl bg-secondary border border-primary/20 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/10 transition-all duration-300 neon-border"
+                    className={`w-14 h-14 ${social.color} border-4 border-foreground flex items-center justify-center text-foreground shadow-[4px_4px_0px_hsl(var(--foreground))] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all`}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-6 h-6" />
                   </a>
                 ))}
               </div>
