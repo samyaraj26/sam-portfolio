@@ -32,7 +32,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-primary/20"
+          ? "bg-background/95 backdrop-blur-sm border-b-4 border-foreground"
           : "bg-transparent"
       }`}
     >
@@ -41,37 +41,39 @@ const Navbar = () => {
           {/* Logo */}
           <a
             href="#"
-            className="font-display text-xl md:text-2xl font-bold text-primary neon-text"
+            className="font-display text-3xl md:text-4xl tracking-wider"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            SAM<span className="text-foreground">.exe</span>
+            <span className="text-primary">SAM</span>
+            <span className="text-secondary">.</span>
+            <span className="text-foreground">EXE</span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
+                className="font-display text-lg text-foreground hover:text-primary transition-colors duration-200 tracking-wide"
               >
                 {link.name}
               </button>
             ))}
             <Button
               onClick={() => handleNavClick("#contact")}
-              className="bg-primary text-primary-foreground hover:bg-primary/80 neon-border animate-glow-pulse"
+              className="font-display text-lg tracking-wide bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground border-4 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all"
             >
-              Contact Me
+              CONTACT ME
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground p-2"
+            className="md:hidden text-foreground p-2 border-2 border-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -80,23 +82,25 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-primary/20 animate-fade-in">
-            <div className="flex flex-col py-4 gap-2">
-              {navLinks.map((link) => (
+          <div className="md:hidden bg-background border-4 border-foreground shadow-[8px_8px_0px_hsl(var(--foreground))] mb-4">
+            <div className="flex flex-col py-4">
+              {navLinks.map((link, index) => (
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-300 py-3 px-4 text-left"
+                  className={`font-display text-xl text-foreground hover:bg-primary hover:text-primary-foreground transition-colors py-3 px-6 text-left tracking-wide ${
+                    index % 2 === 0 ? "hover:bg-primary" : "hover:bg-secondary hover:text-secondary-foreground"
+                  }`}
                 >
                   {link.name}
                 </button>
               ))}
-              <div className="px-4 pt-2">
+              <div className="px-4 pt-4 border-t-2 border-foreground mt-2">
                 <Button
                   onClick={() => handleNavClick("#contact")}
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/80"
+                  className="w-full font-display text-lg bg-primary text-primary-foreground border-4 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))]"
                 >
-                  Contact Me
+                  CONTACT ME
                 </Button>
               </div>
             </div>
