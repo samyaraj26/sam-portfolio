@@ -1,5 +1,9 @@
-import { ArrowDown, Github, Linkedin, Instagram } from "lucide-react";
+import { ArrowUpRight, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const techLogos = [
+  "Python", "Django", "Pandas", "Power BI", "MySQL", "AWS", "Git", "Tableau"
+];
 
 const HeroSection = () => {
   const handleScrollTo = (href: string) => {
@@ -8,100 +12,95 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden spray-texture">
-      {/* Colorblock Background Elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-primary opacity-20 -skew-x-12" />
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/3 bg-secondary opacity-20 skew-x-12" />
-      <div className="absolute top-1/4 left-10 w-32 h-32 bg-accent opacity-30 rotate-12" />
-      <div className="absolute bottom-1/4 right-10 w-24 h-24 bg-graffiti-green opacity-30 -rotate-6" />
-      
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 50px, hsl(var(--foreground)) 50px, hsl(var(--foreground)) 51px),
-                          repeating-linear-gradient(90deg, transparent, transparent 50px, hsl(var(--foreground)) 50px, hsl(var(--foreground)) 51px)`
-      }} />
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-center text-center gap-8">
-          {/* Avatar */}
-          <div className="relative animate-bounce-in">
-            <div className="w-36 h-36 md:w-44 md:h-44 border-4 border-foreground bg-primary shadow-[8px_8px_0px_hsl(var(--foreground))] flex items-center justify-center rotate-3 hover:rotate-0 transition-transform duration-300">
-              <span className="font-display text-5xl md:text-6xl text-primary-foreground">
-                SS
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background pt-20">
+      {/* Main Content */}
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-24">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="space-y-8">
+            <h1 className="font-display text-6xl md:text-7xl lg:text-8xl text-foreground leading-none">
+              WE ARE{" "}
+              <span className="inline-flex items-center">
+                <TrendingUp className="w-10 h-10 md:w-14 md:h-14 text-primary mx-2" />
               </span>
-            </div>
-            {/* Status Badge */}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-secondary text-secondary-foreground px-4 py-1 border-2 border-foreground shadow-[3px_3px_0px_hsl(var(--foreground))] -rotate-2">
-              <span className="font-display text-sm tracking-wide">OPEN TO WORK</span>
-            </div>
-          </div>
-
-          {/* Name & Title */}
-          <div className="space-y-4 mt-8">
-            <h1 className="font-display text-6xl md:text-8xl lg:text-9xl leading-none">
-              <span className="block text-foreground">SAMYARAJ</span>
-              <span className="block text-stroke-pink md:text-stroke text-primary md:text-transparent">SARKAR</span>
+              A POWERFUL
+              <br />
+              <span className="text-foreground">DATA ANALYST</span>
+              <br />
+              <span className="text-foreground">AGENCY</span>
             </h1>
-            <div className="flex flex-wrap justify-center gap-3">
-              <span className="bg-primary text-primary-foreground px-4 py-2 font-display text-xl md:text-2xl tracking-wide border-2 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))]">
-                PYTHON DEVELOPER
-              </span>
-              <span className="bg-accent text-accent-foreground px-4 py-2 font-display text-xl md:text-2xl tracking-wide border-2 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))]">
-                DATA ANALYST
-              </span>
+
+            <div className="grid grid-cols-2 gap-8 pt-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Hi, I'm Samyaraj — a data analyst & Python developer specializing in extracting insights from complex datasets to drive business decisions.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                I believe in data-driven storytelling, creating clear visualizations that communicate insights for strategic decision-making.
+              </p>
             </div>
           </div>
 
-          {/* Tagline */}
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl font-medium">
-            "Turning messy data into clean insights and ideas into working code."
+          {/* Right Stats */}
+          <div className="flex justify-end gap-8 lg:gap-12">
+            <div className="bg-primary px-6 py-4">
+              <span className="font-display text-4xl md:text-5xl text-primary-foreground">10+</span>
+              <p className="text-xs text-primary-foreground/80 mt-1">Projects<br />completed</p>
+            </div>
+            <div className="bg-secondary px-6 py-4 border border-border">
+              <span className="font-display text-4xl md:text-5xl text-secondary-foreground">5+</span>
+              <p className="text-xs text-muted-foreground mt-1">Clients<br />served</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tech Logos Marquee */}
+      <div className="border-y border-border bg-card overflow-hidden py-4">
+        <div className="flex marquee-track">
+          {[...techLogos, ...techLogos].map((tech, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 px-8 text-muted-foreground text-sm font-medium whitespace-nowrap"
+            >
+              <span className="w-2 h-2 bg-primary rounded-full"></span>
+              {tech}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Description Section */}
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-24">
+        <div className="max-w-4xl">
+          <p className="text-2xl md:text-3xl lg:text-4xl text-foreground leading-relaxed font-light">
+            Your dynamically in{" "}
+            <span className="inline-flex items-center justify-center w-8 h-8 bg-primary rounded-full mx-1">
+              <span className="text-primary-foreground text-sm">✓</span>
+            </span>{" "}
+            navigating the digital landscape. We're more than an agency, we're passionate about turning complex{" "}
+            <span className="inline-flex items-center justify-center w-8 h-8 bg-secondary border border-border mx-1">
+              <span className="text-secondary-foreground text-sm">📁</span>
+            </span>{" "}
+            data into actionable insights{" "}
+            <span className="inline-flex items-center justify-center w-8 h-8 bg-primary mx-1">
+              <span className="text-primary-foreground text-sm">📊</span>
+            </span>{" "}
+            for your success.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex justify-between items-end mt-12">
+            <div className="text-sm text-muted-foreground">
+              <p>Based in Assam, India</p>
+              <p className="text-foreground font-medium">samyaraj26@gmail.com</p>
+            </div>
             <Button
-              size="lg"
               onClick={() => handleScrollTo("#projects")}
-              className="font-display text-xl tracking-wide bg-secondary text-secondary-foreground hover:bg-graffiti-yellow border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] hover:shadow-[8px_8px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all px-8"
+              className="group bg-transparent text-foreground border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
             >
-              VIEW PROJECTS
-            </Button>
-            <Button
-              size="lg"
-              onClick={() => handleScrollTo("#contact")}
-              className="font-display text-xl tracking-wide bg-transparent text-foreground hover:bg-primary hover:text-primary-foreground border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] hover:shadow-[8px_8px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all px-8"
-            >
-              CONTACT ME
+              View Projects
+              <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Button>
           </div>
-
-          {/* Social Links */}
-          <div className="flex items-center gap-4 mt-4">
-            {[
-              { icon: Linkedin, href: "https://www.linkedin.com/in/samyaraj-sarkar/", color: "hover:bg-accent" },
-              { icon: Github, href: "https://github.com/samyaraj26/", color: "hover:bg-graffiti-purple" },
-              { icon: Instagram, href: "https://www.instagram.com/_.sam.exe._/", color: "hover:bg-primary" },
-            ].map((social, index) => (
-              <a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-12 h-12 border-3 border-foreground bg-card flex items-center justify-center text-foreground ${social.color} hover:text-primary-foreground transition-all shadow-[4px_4px_0px_hsl(var(--foreground))] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px]`}
-              >
-                <social.icon size={22} />
-              </a>
-            ))}
-          </div>
-
-          {/* Scroll Indicator */}
-          <button
-            onClick={() => handleScrollTo("#about")}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-foreground hover:text-primary transition-colors animate-bounce"
-            aria-label="Scroll down"
-          >
-            <ArrowDown size={32} strokeWidth={3} />
-          </button>
         </div>
       </div>
     </section>
