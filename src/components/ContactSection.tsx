@@ -19,10 +19,10 @@ const footerLinks = {
   legal: ["Terms", "Privacy", "Cookies", "Licenses"],
 };
 
-// EmailJS credentials - Replace these with your actual credentials
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+
+const EMAILJS_SERVICE_ID = "service_b7xibib";
+const EMAILJS_TEMPLATE_ID = "template_rpkpcka";
+const EMAILJS_PUBLIC_KEY = "9LBUwecGR-5e-aunv";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -41,7 +41,8 @@ const ContactSection = () => {
       return;
     }
 
-    if (EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID") {
+    // TODO: Replace this with a proper check once you have your EmailJS credentials
+    if (false) {
       toast({
         title: "EmailJS Not Configured",
         description: "Please configure EmailJS credentials to enable email functionality.",
