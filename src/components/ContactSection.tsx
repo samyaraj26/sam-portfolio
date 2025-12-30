@@ -1,40 +1,23 @@
 import { useState, FormEvent } from "react";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "EMAIL",
-    value: "samyaraj26@gmail.com",
-    href: "mailto:samyaraj26@gmail.com",
-    color: "bg-primary",
-  },
-  {
-    icon: Phone,
-    label: "PHONE",
-    value: "+91 9864923022",
-    href: "tel:+919864923022",
-    color: "bg-accent",
-  },
-  {
-    icon: MapPin,
-    label: "LOCATION",
-    value: "Assam, India",
-    href: null,
-    color: "bg-secondary text-secondary-foreground",
-  },
+const socialLinks = [
+  { icon: Linkedin, href: "https://www.linkedin.com/in/samyaraj-sarkar/", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/samyaraj26/", label: "Github" },
+  { icon: Instagram, href: "https://www.instagram.com/_.sam.exe._/", label: "Instagram" },
 ];
 
-const socialLinks = [
-  { icon: Linkedin, href: "https://www.linkedin.com/in/samyaraj-sarkar/", label: "LinkedIn", color: "bg-accent" },
-  { icon: Github, href: "https://github.com/samyaraj26/", label: "GitHub", color: "bg-graffiti-purple" },
-  { icon: Instagram, href: "https://www.instagram.com/_.sam.exe._/", label: "Instagram", color: "bg-primary" },
-];
+const footerLinks = {
+  about: ["Overview", "Features", "Solutions", "Tutorials"],
+  company: ["About us", "Careers", "Press", "News"],
+  resource: ["Blog", "Newsletter", "Events", "Help centre"],
+  social: ["Twitter", "LinkedIn", "Facebook", "GitHub"],
+  legal: ["Terms", "Privacy", "Cookies", "Licenses"],
+};
 
 // EmailJS credentials - Replace these with your actual credentials
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
@@ -44,19 +27,15 @@ const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    if (!email.trim()) {
       toast({
         title: "Error",
-        description: "Please fill in all fields.",
+        description: "Please enter your email.",
         variant: "destructive",
       });
       return;
@@ -78,9 +57,8 @@ const ContactSection = () => {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
+          from_email: email,
+          message: "New contact request from portfolio",
           to_name: "Samyaraj",
         },
         EMAILJS_PUBLIC_KEY
@@ -91,7 +69,7 @@ const ContactSection = () => {
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
 
-      setFormData({ name: "", email: "", message: "" });
+      setEmail("");
     } catch (error) {
       toast({
         title: "Error",
@@ -104,132 +82,122 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-20 left-0 w-72 h-72 bg-graffiti-green opacity-10 rotate-12" />
-      <div className="absolute bottom-20 right-0 w-64 h-64 bg-primary opacity-10 -rotate-12" />
-      
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Section Header */}
-        <div className="mb-16 text-center">
-          <div className="inline-block bg-graffiti-orange text-foreground px-6 py-2 border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] -rotate-1 mb-4">
-            <span className="font-display text-sm tracking-widest">LET'S CONNECT</span>
-          </div>
-          <h2 className="font-display text-5xl md:text-7xl text-foreground">
-            GET IN <span className="text-primary">TOUCH</span>
-          </h2>
-        </div>
+    <section id="contact" className="bg-background">
+      {/* CTA Section */}
+      <div className="bg-primary py-20 md:py-32">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary-foreground mb-6">
+              Maximize Success
+              <br />
+              With Our Data Expertise
+            </h2>
+            <p className="text-primary-foreground/80 mb-8">
+              Let's work together to transform your data into actionable insights that drive business growth.
+            </p>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Contact Form */}
-          <div className="graffiti-card p-6 md:p-8">
-            <h3 className="font-display text-2xl text-foreground mb-6 tracking-wide">
-              SEND A MESSAGE
-            </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <Input
-                  type="text"
-                  placeholder="YOUR NAME"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="font-display tracking-wide bg-muted border-2 border-foreground text-foreground placeholder:text-muted-foreground h-12"
-                  maxLength={100}
-                />
-              </div>
-              <div>
-                <Input
-                  type="email"
-                  placeholder="YOUR EMAIL"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="font-display tracking-wide bg-muted border-2 border-foreground text-foreground placeholder:text-muted-foreground h-12"
-                  maxLength={255}
-                />
-              </div>
-              <div>
-                <Textarea
-                  placeholder="YOUR MESSAGE"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="font-display tracking-wide bg-muted border-2 border-foreground text-foreground placeholder:text-muted-foreground min-h-[150px]"
-                  maxLength={1000}
-                />
-              </div>
+            {/* Email Form */}
+            <form onSubmit={handleSubmit} className="flex gap-2 max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 bg-primary-foreground text-foreground border-0 placeholder:text-muted-foreground"
+                maxLength={255}
+              />
               <Button
                 type="submit"
-                size="lg"
                 disabled={isSubmitting}
-                className="w-full font-display text-xl tracking-wide bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] hover:shadow-[8px_8px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all"
+                className="bg-background text-foreground hover:bg-secondary"
               >
-                {isSubmitting ? (
-                  "SENDING..."
-                ) : (
-                  <>
-                    <Send className="w-5 h-5 mr-2" />
-                    SEND MESSAGE
-                  </>
-                )}
+                <ArrowUpRight className="w-5 h-5" />
               </Button>
             </form>
           </div>
+        </div>
+      </div>
 
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <div
-                  key={info.label}
-                  className={`${info.color} p-5 border-4 border-foreground shadow-[6px_6px_0px_hsl(var(--foreground))] hover-lift`}
-                  style={{ transform: `rotate(${index % 2 === 0 ? -1 : 1}deg)` }}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-foreground/10">
-                      <info.icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="font-display text-sm tracking-widest opacity-80">{info.label}</p>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="font-bold text-lg hover:underline"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="font-bold text-lg">{info.value}</p>
-                      )}
-                    </div>
-                  </div>
+      {/* Footer */}
+      <footer className="border-t border-border py-16">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
+            {/* Logo */}
+            <div className="col-span-2 md:col-span-1">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-primary flex items-center justify-center">
+                  <span className="font-display text-lg text-primary-foreground">S</span>
                 </div>
+                <span className="font-display text-xl text-foreground">SAMYARAJ</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Powerful, Innovative,
+                <br />
+                Data-Driven Solutions
+              </p>
+            </div>
+
+            {/* Links */}
+            <div>
+              <h4 className="text-sm font-medium text-foreground mb-4">About</h4>
+              {footerLinks.about.map((link) => (
+                <a key={link} href="#" className="block text-sm text-muted-foreground hover:text-foreground py-1">
+                  {link}
+                </a>
               ))}
             </div>
 
-            {/* Social Links */}
             <div>
-              <h3 className="font-display text-2xl text-foreground mb-6 tracking-wide inline-block bg-graffiti-green text-foreground px-4 py-1 border-2 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))]">
-                FOLLOW ME
-              </h3>
-              
-              <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className={`w-14 h-14 ${social.color} border-4 border-foreground flex items-center justify-center text-foreground shadow-[4px_4px_0px_hsl(var(--foreground))] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all`}
-                  >
-                    <social.icon className="w-6 h-6" />
-                  </a>
-                ))}
-              </div>
+              <h4 className="text-sm font-medium text-foreground mb-4">Company</h4>
+              {footerLinks.company.map((link) => (
+                <a key={link} href="#" className="block text-sm text-muted-foreground hover:text-foreground py-1">
+                  {link}
+                </a>
+              ))}
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-foreground mb-4">Resource</h4>
+              {footerLinks.resource.map((link) => (
+                <a key={link} href="#" className="block text-sm text-muted-foreground hover:text-foreground py-1">
+                  {link}
+                </a>
+              ))}
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-foreground mb-4">Social</h4>
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-sm text-muted-foreground hover:text-foreground py-1"
+                >
+                  {social.label}
+                </a>
+              ))}
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-foreground mb-4">Legal</h4>
+              {footerLinks.legal.map((link) => (
+                <a key={link} href="#" className="block text-sm text-muted-foreground hover:text-foreground py-1">
+                  {link}
+                </a>
+              ))}
             </div>
           </div>
+
+          {/* Copyright */}
+          <div className="border-t border-border pt-8 text-center">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Samyaraj Sarkar. All rights reserved.
+            </p>
+          </div>
         </div>
-      </div>
+      </footer>
     </section>
   );
 };
