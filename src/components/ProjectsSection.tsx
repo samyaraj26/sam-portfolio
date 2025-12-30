@@ -8,21 +8,21 @@ const projects = [
     description: "Exploratory Data Analysis on IMDB movie dataset. Analyzed trends, ratings, and box office performance using Python and visualization libraries.",
     icon: Film,
     tags: ["Python", "Pandas", "Matplotlib", "EDA"],
-    github: "https://github.com/samyaraj26/imdb-movie-eda",
+    github: "https://github.com/samyaraj26/IMDB_Movie_EDA_Project.git",
   },
   {
     title: "Health Data Analytics",
     description: "Comprehensive health data analysis focusing on patient records and treatment outcomes for better healthcare decision-making.",
     icon: HeartPulse,
     tags: ["Python", "Data Analysis", "Healthcare"],
-    github: "https://github.com/samyaraj26/health-data-analytics",
+    github: "https://github.com/samyaraj26/Health_Data_Analysis.git",
   },
   {
     title: "E-Commerce Segmentation",
     description: "Customer segmentation using clustering algorithms for targeted marketing strategies and improved customer retention.",
     icon: ShoppingCart,
     tags: ["Python", "ML", "Clustering"],
-    github: "https://github.com/samyaraj26/ecommerce-segmentation",
+    github: "https://github.com/samyaraj26/E-commerce_Customer_Segmentation.git",
   },
 ];
 

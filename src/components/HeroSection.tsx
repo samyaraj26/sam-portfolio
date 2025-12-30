@@ -5,7 +5,7 @@ import { lazy, Suspense } from "react";
 const HeroScene = lazy(() => import("./HeroScene"));
 
 const techLogos = [
-  "Python", "Django", "Pandas", "Power BI", "MySQL", "AWS", "Git", "Tableau"
+  "Python", "Django", "Pandas", "Power BI", "MySQL", "AWS", "Git", "Tableau", "NumPy", "Matplotlib", "Seaborn", "Jupyter", "Excel", "SQL", "Google Analytics"
 ];
 
 const HeroSection = () => {
@@ -27,7 +27,7 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <h1 className="font-display text-6xl md:text-7xl lg:text-8xl text-foreground leading-none">
-              WE ARE{" "}
+              NOTHING, JUST{" "}
               <span className="inline-flex items-center">
                 <TrendingUp className="w-10 h-10 md:w-14 md:h-14 text-primary mx-2" />
               </span>

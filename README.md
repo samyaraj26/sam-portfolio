@@ -1,73 +1,75 @@
-# Welcome to your Lovable project
+# Data Navigator - Personal Portfolio
 
-## Project info
+This is a personal portfolio website built with React, Vite, and TypeScript. It showcases projects, skills, and provides a way for visitors to get in touch via an email contact form.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Responsive Design:** The website is fully responsive and works on all devices.
+- **Component-Based Architecture:** The code is organized into reusable components.
+- **Contact Form:** A functional contact form that uses EmailJS to send emails.
+- **Modern Tech Stack:** Built with the latest technologies like React, Vite, and TypeScript.
 
-There are several ways of editing your application.
 
-**Use Lovable**
+## Technologies Used
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- [Vite](https://vitejs.dev/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [EmailJS](https://www.emailjs.com/)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Folder Structure
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+.
+├── public
+│   ├── favicon.ico
+│   ├── placeholder.svg
+│   └── robots.txt
+├── src
+│   ├── components
+│   │   ├── ui
+│   │   ├── AboutSection.tsx
+│   │   ├── ContactSection.tsx
+│   │   ├── Footer.tsx
+│   │   ├── HeroScene.tsx
+│   │   ├── HeroSection.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── NavLink.tsx
+│   │   ├── ProjectsSection.tsx
+│   │   ├── ServicesSection.tsx
+│   │   └── SkillsSection.tsx
+│   ├── hooks
+│   │   ├── use-mobile.tsx
+│   │   └── use-toast.ts
+│   ├── lib
+│   │   └── utils.ts
+│   ├── pages
+│   │   ├── Index.tsx
+│   │   └── NotFound.tsx
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── .gitignore
+├── index.html
+├── package.json
+├── README.md
+└── tsconfig.json
 ```
 
-**Edit a file directly in GitHub**
+## Contributing
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-**Use GitHub Codespaces**
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## License
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Distributed under the MIT License. See `LICENSE` for more information.
