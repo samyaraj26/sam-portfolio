@@ -1,5 +1,8 @@
 import { ArrowUpRight, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { lazy, Suspense } from "react";
+
+const HeroScene = lazy(() => import("./HeroScene"));
 
 const techLogos = [
   "Python", "Django", "Pandas", "Power BI", "MySQL", "AWS", "Git", "Tableau"
@@ -13,8 +16,13 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background pt-20">
+      {/* 3D Scene Background */}
+      <Suspense fallback={null}>
+        <HeroScene />
+      </Suspense>
+
       {/* Main Content */}
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-24">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
@@ -55,7 +63,7 @@ const HeroSection = () => {
       </div>
 
       {/* Tech Logos Marquee */}
-      <div className="border-y border-border bg-card overflow-hidden py-4">
+      <div className="border-y border-border bg-card/80 backdrop-blur-sm overflow-hidden py-4 relative z-10">
         <div className="flex marquee-track">
           {[...techLogos, ...techLogos].map((tech, index) => (
             <div
@@ -70,7 +78,7 @@ const HeroSection = () => {
       </div>
 
       {/* Description Section */}
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-24">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-24 relative z-10">
         <div className="max-w-4xl">
           <p className="text-2xl md:text-3xl lg:text-4xl text-foreground leading-relaxed font-light">
             Your dynamically in{" "}
